@@ -1,0 +1,6 @@
+{
+  "appId": "com.ivayloslavov.quicklists",
+  "appName": "quicklists",
+  "bundledWebRuntime": false,
+  "webDir": "www"
+}
