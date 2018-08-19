@@ -56,13 +56,12 @@ export class ChecklistDataService {
     });
 
     this.save();
-    )
   }
 
   removeItem(checklist, item): void {
     let index = checklist.items.indexOf(item);
 
-    if(index > -1){
+    if (index > -1) {
       checklist.items.splice(index, 1);
       this.save();
     }
@@ -89,10 +88,9 @@ export class ChecklistDataService {
       return checklist.id.substring(0, slug.length) === slug;
     });
 
-    if(exists.length > 0) {
+    if (exists.length > 0) {
       slug = slug + exists.length.toString();
     }
-
     return slug;
   }
 
