@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import  { Checklist } from '../interfaces/checklist';
+import { Checklist } from '../interfaces/checklist';
+import { Storage} from '@ionic/storage';
 
 @Injectable({
   providedIn: 'root'
@@ -9,12 +10,20 @@ export class ChecklistDataService {
   public  checklists: Checklist[] = [];
   public loaded: boolean = false;
 
-  constructor() {
+  constructor(private storage: Storage) {
 
   }
 
   load(): Promise<boolean> {
-    return Promise.resolve(true);
+    return new Promise((resolve) => {
+      this.storage.get('checklists').then((checklists) => {
+        if (checklists != null) {
+          this.checklists = checklists;
+        }
+        this.loaded = true;
+        resolve(true);
+      });
+    });
   }
 
   createChecklist(data): void {
@@ -78,7 +87,7 @@ export class ChecklistDataService {
   }
 
   save(): void {
-
+    this.storage.set('checklists', this.checklists);
   }
 
   generateSlug(title): string {

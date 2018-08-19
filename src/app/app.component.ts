@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Plugins } from '@capacitor/core';
-
+import { ChecklistDataService} from './services/checklist-data.service';
 /*
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -14,10 +14,13 @@ const { SplashScreen, StatusBar } = Plugins;
   templateUrl: 'app.component.html'
 })
 export class AppComponent {
-  constructor() {
+  constructor(private dataService: ChecklistDataService) {
+    this.dataService.load();
+
     SplashScreen.hide().catch((err) => {
       console.warn(err);
     });
+
     StatusBar.hide().catch((err) => {
       console.warn(err);
     });
